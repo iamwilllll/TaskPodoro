@@ -1,19 +1,21 @@
 @import 'tailwindcss';
 
 :root {
-    --first-font: 'plus-jakarta-sans', sans-serif;
+    --first-font: 'Plus Jakarta Sans', sans-serif;
 
+    --primary-600: #3d53db;
 
-
-    --secondary-300: #8E92BC;
+    --secondary-300: #8e92bc;
+    --secondary-400: #54577a;
     --secondary-500: #141522;
-    
-
 }
 
 @theme {
     --font-primary: var(--first-font);
 
-    --color-secondary-500: var(--secondary-500);
+    --color-primary-600: var(--primary-600);
+
     --color-secondary-300: var(--secondary-300);
+    --color-secondary-400: var(--secondary-400);
+    --color-secondary-500: var(--secondary-500);
 }
