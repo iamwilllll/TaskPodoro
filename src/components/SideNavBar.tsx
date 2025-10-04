@@ -32,7 +32,7 @@ function SideNavBar({ className }: SideNavBarProps) {
 
     return (
         <nav
-            className={`font-primary fixed top-0 size-full h-full p-10 transition-[left] duration-700 lg:static lg:bg-transparent lg:p-0 ${className} ${navBarIsActive ? 'left-0 z-5 bg-[#F5F5F7]' : '-left-500'} `}
+            className={`font-primary fixed top-0 size-full h-full p-10 transition-[left] duration-250 lg:static lg:bg-transparent lg:p-0 ${className} ${navBarIsActive ? 'left-0 z-5 bg-[#F5F5F7]' : '-left-500'} `}
         >
             <div className="mb-5 flex items-center justify-end lg:hidden">
                 <button
@@ -43,7 +43,7 @@ function SideNavBar({ className }: SideNavBarProps) {
                 </button>
             </div>
 
-            <aside className={`mb-15 flex items-center gap-2`}>
+            <aside className='mb-15 flex items-center gap-2'>
                 <img src="/icon.svg" alt="Icon image" />
                 <h1 className="text-secondary-500 text-4xl font-semibold">TaskPodoro</h1>
             </aside>

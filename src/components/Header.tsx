@@ -12,25 +12,25 @@ function Header({ className, title }: HeaderProps) {
     const { changeNavBarVisibility } = useNavBar();
 
     return (
-        <section className={`font-primary items-top relative flex justify-end lg:justify-between ${className} `}>
+        <section className={`font-primary items-top relative mb-10 flex justify-end lg:justify-between ${className}`}>
             <div className="fixed left-10 lg:hidden">
-                <button onClick={changeNavBarVisibility} title='Open menu' aria-label='Open menu button'>
+                <button onClick={changeNavBarVisibility} title="Open menu" aria-label="Open menu button">
                     <MenuIcon className="size-10 cursor-pointer hover:scale-105" />
                 </button>
             </div>
 
-            <aside className="hidden lg:block">
+            <aside className="lg:block">
                 {title ? (
-                    <h2 className="text-secondary-500 text-4xl font-semibold"> {title}</h2>
+                    <h2 className="text-secondary-500 text-right text-4xl font-semibold lg:text-left"> {title}</h2>
                 ) : (
                     <>
-                        <h3 className="text-3xl font-bold">Hi, {USER_NAME}</h3>
-                        <h4 className="text-secondary-400 text-xl"> Let's finish your task today!</h4>
+                        <h3 className="text-right text-3xl font-bold lg:text-left">Hi, {USER_NAME}</h3>
+                        <h4 className="text-secondary-400 text-right text-xl lg:text-left"> Let's finish your task today!</h4>
                     </>
                 )}
             </aside>
 
-            <figure>
+            <figure className="hidden lg:block">
                 <img src={PROFILE_PICTURE} alt="User profile picture" className="size-15 rounded-full" />
             </figure>
         </section>
