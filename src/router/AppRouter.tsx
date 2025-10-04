@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
     {
         path: '/pomodoro',
         element: <AppLayout title="Pomodoro" />,
-        children: [{ path: '', element: <Pomodoro className="size-full lg:hidden" /> }],
+        children: [{ path: '', element: <Pomodoro className="lg:hidden" /> }],
     },
 
     {

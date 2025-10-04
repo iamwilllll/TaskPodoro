@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 
 import ClockIcon from '../assets/icons/clock-icon.svg?react';
 import CloseIcon from '../assets/icons/close-icon.svg?react';
@@ -32,7 +32,7 @@ function SideNavBar({ className }: SideNavBarProps) {
 
     return (
         <nav
-            className={`font-primary fixed size-full h-full p-10 transition-[left] duration-700 lg:static lg:bg-transparent lg:p-0 ${className} ${navBarIsActive ? 'top-0 left-0 z-5 bg-[#c9c9c9]' : '-left-500'} `}
+            className={`font-primary fixed top-0 size-full h-full p-10 transition-[left] duration-700 lg:static lg:bg-transparent lg:p-0 ${className} ${navBarIsActive ? 'left-0 z-5 bg-[#F5F5F7]' : '-left-500'} `}
         >
             <div className="mb-5 flex items-center justify-end lg:hidden">
                 <button
@@ -54,13 +54,15 @@ function SideNavBar({ className }: SideNavBarProps) {
 
                     return (
                         <li key={index} className={`text-secondary-300 ${onlyDisplayInMobile && 'lg:hidden'} text-xl transition`}>
-                            <Link
+                            <NavLink
                                 to={to}
-                                className="hover:text-secondary-500 flex cursor-pointer items-center gap-3 p-2.5 transition hover:scale-105"
+                                className={({ isActive }) =>
+                                    `hover:text-secondary-500 flex cursor-pointer items-center gap-3 p-2.5 transition hover:scale-105 ${isActive && 'text-secondary-500'}`
+                                }
                             >
                                 {icon}
                                 {label}
-                            </Link>
+                            </NavLink>
                         </li>
                     );
                 })}

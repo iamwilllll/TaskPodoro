@@ -25,9 +25,9 @@ function AppLayout({ title }: AppLayoutProps) {
             <Header title={title} />
             <Pomodoro className="col-start-3 col-end-4 row-start-1 row-end-5 hidden lg:block" />
 
-            <main className="size-full">
+            <section>
                 <Outlet />
-            </main>
+            </section>
         </section>
     );
 }
