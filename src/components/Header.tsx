@@ -12,9 +12,9 @@ function Header({ className, title }: HeaderProps) {
     const { changeNavBarVisibility } = useNavBar();
 
     return (
-        <section className={`font-pprimary items-top relative flex justify-end lg:justify-between ${className} `}>
+        <section className={`font-primary items-top relative flex justify-end lg:justify-between ${className} `}>
             <div className="fixed left-10 lg:hidden">
-                <button onClick={changeNavBarVisibility}>
+                <button onClick={changeNavBarVisibility} title='Open menu' aria-label='Open menu button'>
                     <MenuIcon className="size-10 cursor-pointer hover:scale-105" />
                 </button>
             </div>
