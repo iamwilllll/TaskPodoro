@@ -43,7 +43,7 @@ function SideNavBar({ className }: SideNavBarProps) {
                 </button>
             </div>
 
-            <aside className='mb-15 flex items-center gap-2'>
+            <aside className="mb-15 flex items-center gap-2">
                 <img src="/icon.svg" alt="Icon image" />
                 <h1 className="text-secondary-500 text-4xl font-semibold">TaskPodoro</h1>
             </aside>
