@@ -71,7 +71,6 @@ export const usePomodoro = () => {
 
     /* Functions */
     const changeSession = useCallback(() => {
-        
         const nextSession = currentSession.label === WORK_SESSION.label ? BREAK_SESSION : WORK_SESSION;
 
         setCurrentSession(nextSession);
