@@ -8,6 +8,7 @@ import { usePomodoro } from '../hooks/usePomodoro';
 import QuestionIcon from '../assets/icons/question-icon.svg?react';
 import PauseIcon from '../assets/icons/pause-icon.svg?react';
 import PlayIcon from '../assets/icons/play-icon.svg?react';
+import NextIcon from '../assets/icons/next-icon.svg?react';
 
 /* Dependencies */
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
@@ -19,7 +20,7 @@ type PomodoroProps = {
 };
 
 function Pomodoro({ className }: PomodoroProps) {
-    const { time, isActive, setActive, formatTime } = usePomodoro();
+    const { currentSession, isActive, toggleActive, maxTime, changeSession, formatTime } = usePomodoro();
 
     return (
         <section className={`${className}`}>
@@ -27,18 +28,25 @@ function Pomodoro({ className }: PomodoroProps) {
                 <div>
                     <CircularProgressbar
                         strokeWidth={1}
-                        value={time}
-                        maxValue={1500}
-                        text={formatTime(time)}
+                        value={currentSession.time}
+                        maxValue={maxTime}
+                        text={formatTime(currentSession.time)}
                         styles={buildStyles({ pathColor: '#3d53db', textColor: '#3d53db' })}
                     />
 
-                    <div className="mt-5 flex items-center justify-center">
+                    <div className="mt-5 grid grid-cols-3">
                         <button
-                            onClick={setActive}
+                            onClick={toggleActive}
+                            className="text-primary-600 hover:text-secondary-300 col-start-2 mx-auto cursor-pointer transition hover:scale-105"
+                        >
+                            {isActive ? <PauseIcon className="size-15" /> : <PlayIcon className="size-15" />}
+                        </button>
+
+                        <button
+                            onClick={changeSession}
                             className="text-primary-600 hover:text-secondary-300 cursor-pointer transition hover:scale-105"
                         >
-                            {isActive ? <PauseIcon className="size-20" /> : <PlayIcon className="size-20" />}
+                            <NextIcon className="size-10" />
                         </button>
                     </div>
                 </div>
