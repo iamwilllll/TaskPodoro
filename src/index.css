@@ -8,6 +8,7 @@
     --secondary-300: #8e92bc;
     --secondary-400: #54577a;
     --secondary-500: #141522;
+    --secondary-600: #262733;
 }
 
 @theme {
@@ -18,4 +19,5 @@
     --color-secondary-300: var(--secondary-300);
     --color-secondary-400: var(--secondary-400);
     --color-secondary-500: var(--secondary-500);
+    --color-secondary-600: var(--secondary-600);
 }
