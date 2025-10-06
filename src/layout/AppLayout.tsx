@@ -20,15 +20,15 @@ function AppLayout({ title }: AppLayoutProps) {
     useEffect(() => changeNavBarVisibility(), [location, changeNavBarVisibility]);
 
     return (
-        <section className="lg:grid-row-[1fr_3fr_3fr_3fr] gap-5 p-10 lg:grid lg:h-screen lg:grid-cols-[1fr_2fr_1fr]">
-            <SideNavBar className="col-start-1 col-end-2 row-start-1 row-end-5" />
+        <main className="gap-1 p-10 lg:grid lg:max-h-[100vh] lg:min-h-[100vh] lg:grid-cols-[1fr_3fr_1fr] lg:grid-rows-[1fr_4fr_4fr]">
+            <SideNavBar className="col-start-1 col-end-2 row-start-1 row-end-4" />
             <Header title={title} />
-            <Pomodoro className="col-start-3 col-end-4 row-start-1 row-end-5 hidden lg:block" />
+            <Pomodoro className="col-start-3 col-end-4 row-start-1 row-end-4 hidden lg:block" />
 
-            <section>
+            <section className="row-start-2 row-end-4 col-start-2 col-end-3 ">
                 <Outlet />
             </section>
-        </section>
+        </main>
     );
 }
 
