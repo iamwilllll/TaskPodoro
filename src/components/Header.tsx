@@ -12,7 +12,7 @@ function Header({ className, title }: HeaderProps) {
     const { changeNavBarVisibility } = useNavBar();
 
     return (
-        <section className={`font-primary items-top relative mb-10 flex justify-end lg:justify-between ${className}`}>
+        <header className={`font-primary items-top relative mb-10 flex justify-end lg:mb-0 lg:justify-between ${className}`}>
             <div className="fixed left-10 lg:hidden">
                 <button onClick={changeNavBarVisibility} title="Open menu" aria-label="Open menu button">
                     <MenuIcon className="size-10 cursor-pointer hover:scale-105" />
@@ -33,7 +33,7 @@ function Header({ className, title }: HeaderProps) {
             <figure className="hidden lg:block">
                 <img src={PROFILE_PICTURE} alt="User profile picture" className="size-15 rounded-full" />
             </figure>
-        </section>
+        </header>
     );
 }
 
