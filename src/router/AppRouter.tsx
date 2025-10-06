@@ -20,7 +20,6 @@ export const router = createBrowserRouter([
     {
         path: '/tasks',
         element: <AppLayout title="Explore tasks" />,
-        children: [{ path: '' }],
     },
 
     {
@@ -32,12 +31,10 @@ export const router = createBrowserRouter([
     {
         path: '/groups',
         element: <AppLayout title="Explore groups" />,
-        children: [{ path: '' }],
     },
 
     {
         path: '/settings',
         element: <AppLayout title="Settings" />,
-        children: [{ path: '' }],
     },
 ]);
