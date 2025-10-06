@@ -1,6 +1,7 @@
 import AddIcon from '../assets/icons/plus-icon.svg?react';
 
 type AddGroupItemProps = {
+    addGroup: () => void;
     className?: string;
 };
 const pseudoCircleClasses: string[] = [
@@ -8,18 +9,14 @@ const pseudoCircleClasses: string[] = [
     "after:bg-secondary-500 after:absolute after:-bottom-25 after:-right-25 after:size-[200px] after:rounded-full after:border-2 after:border-white after:content-['']",
 ];
 
-function AddGroupItem({ className }: AddGroupItemProps) {
-    const handleClick = () => {
-        alert('a');
-    };
-
+function AddGroupItem({ className, addGroup }: AddGroupItemProps) {
     return (
         <div
-            className={`bg-secondary-600 relative flex h-[250px] w-[190px] items-center justify-center overflow-hidden rounded-xl ${pseudoCircleClasses.join(' ')} ${className}`}
+            className={`bg-secondary-600 relative flex w-full max-w-[300px] items-center justify-center overflow-hidden rounded-xl md:h-[250px] md:w-[190px] ${pseudoCircleClasses.join(' ')} ${className}`}
         >
             <button
-                className="flex size-full cursor-pointer items-center justify-center transition hover:scale-110"
-                onClick={handleClick}
+                className="flex size-full cursor-pointer items-center justify-center transition hover:scale-110 z-1"
+                onClick={addGroup}
             >
                 <AddIcon className="text-secondary-500 drop-shadow-[0px_0px_50px_white]" />
             </button>
