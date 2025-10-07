@@ -15,7 +15,7 @@ function AddGroupItem({ className, addGroup }: AddGroupItemProps) {
             className={`bg-secondary-600 relative flex w-full max-w-[300px] items-center justify-center overflow-hidden rounded-xl md:h-[250px] md:w-[190px] ${pseudoCircleClasses.join(' ')} ${className}`}
         >
             <button
-                className="flex size-full cursor-pointer items-center justify-center transition hover:scale-110 z-1"
+                className="z-1 flex size-full cursor-pointer items-center justify-center transition hover:scale-110"
                 onClick={addGroup}
             >
                 <AddIcon className="text-secondary-500 drop-shadow-[0px_0px_50px_white]" />
