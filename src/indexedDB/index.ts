@@ -1,29 +1,29 @@
 import { ErrorLibrary } from '../lib/errorHandler';
 
-class IndexedDB {
-    private readonly GROUP_INDEXED_NAME: string;
-    private request!: IDBOpenDBRequest;
-
-    constructor() {
-        this.GROUP_INDEXED_NAME = 'GROUPS';
-    }
-
-    initDB = () => {
+class initDB {
+    init = () => {
         return new Promise((resolve, reject) => {
-            if (!window.indexedDB) ErrorLibrary.IndexedDB('"IndexedDB" does not exist in your browser');
+            const request = window.indexedDB.open('task_groups', 1);
 
-            this.request = window.indexedDB.open(this.GROUP_INDEXED_NAME, 1);
+            request.onsuccess = (event: Event) => resolve((event.target as IDBOpenDBRequest).result);
+            request.onerror = () => reject(ErrorLibrary.IndexedDB("IndexedDB can't create"));
 
-            this.request.onerror = (event) => reject(event.target);
-            this.request.onsuccess = (event) => resolve(event.target);
-
-            this.request.onupgradeneeded = (event) => {
-                console.log(event.target);
+            request.onupgradeneeded = (event: Event) => {
+                const db = (event.target as IDBOpenDBRequest).result;
+                db.createObjectStore('groups', { keyPath: 'id', autoIncrement: true });
             };
         });
     };
 }
 
-export const indexedDBManager = new IndexedDB();
+class indexedDB {
+    private db;
 
-export class indexedDB {}
+    constructor() {
+        this.db = new initDB();
+    }
+
+    createDB = () => this.db.init();
+}
+
+export const indexedDBManager = new indexedDB();
