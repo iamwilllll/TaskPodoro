@@ -4,9 +4,10 @@ type AddGroupItemProps = {
     addGroup: () => void;
     className?: string;
 };
+
 const pseudoCircleClasses: string[] = [
-    "before:bg-secondary-500 before:absolute before:-top-25 before:-left-25 before:size-[200px] before:rounded-full before:border-2 before:border-white before:content-['']",
-    "after:bg-secondary-500 after:absolute after:-bottom-25 after:-right-25 after:size-[200px] after:rounded-full after:border-2 after:border-white after:content-['']",
+    "before:bg-secondary-500 before:absolute before:-top-25 before:-left-25 before:size-[200px] before:rounded-full before:content-['']",
+    "after:bg-secondary-500 after:absolute after:-bottom-25 after:-right-25 after:size-[200px] after:rounded-full after:content-['']",
 ];
 
 function AddGroupItem({ className, addGroup }: AddGroupItemProps) {
