@@ -1,22 +1,70 @@
-import { useEffect, useState } from 'react';
-import { indexedDBManager } from '../indexedDB';
+import { useCallback, useEffect, useState } from 'react';
+import { v4 as uuid } from 'uuid';
+
+import { indexedDBManager } from '../indexedDB/initDB';
+
+import type { GroupsT, GroupsTDraftT } from '../types';
+
+import { useGroupContext } from '../context/store';
 
 export const useGroup = () => {
     const [db, setDB] = useState<IDBDatabase | null>(null);
+    const { setMaxGroups, addGroupToContext, setGroupsInContext } = useGroupContext();
+    const MAX_GROUPS = 3;
 
     useEffect(() => {
-        indexedDBManager.createDB().then((res) => setDB(res));
+        indexedDBManager.createDB().then((res) => {
+            const db = ((res as Event).target as IDBOpenDBRequest).result;
+            setDB(db);
+        });
     }, []);
 
-    const addGroup = () => {
-        if (!db) return;
-        const transaction = db?.transaction('groups', 'readwrite');
-        const objectStore = transaction?.objectStore('groups');
+    const createGroups = (group: GroupsTDraftT) => {
+        allGroupsAvailable().then(() => {
+            if (!db) return;
+            const transaction = db?.transaction('groups', 'readwrite');
+            const objectStore = transaction?.objectStore('groups');
 
-        objectStore?.add({ wil: 'a' });
+            const updatedGroup: GroupsT = { ...group, id: `${uuid()}-${uuid()}` };
+            objectStore?.add(updatedGroup);
+            addGroupToContext(updatedGroup);
+        });
     };
 
+    const readGroups = useCallback(() => {
+        return new Promise<GroupsT[]>((resolve) => {
+            if (!db) return;
+
+            const transaction = db?.transaction('groups', 'readonly');
+            const objectStore = transaction?.objectStore('groups');
+            const request = objectStore?.getAll();
+
+            request.onsuccess = () => resolve(request.result);
+        });
+    }, [db]);
+
+    const allGroupsAvailable = useCallback(() => {
+        return new Promise<number>((resolve) => {
+            readGroups()
+                .then((groups) => groups.length)
+                .then((amount: number) => {
+                    if (amount >= MAX_GROUPS) {
+                        setMaxGroups(true);
+                    }
+                    resolve(amount);
+                });
+        });
+    }, [readGroups, setMaxGroups]);
+
+    useEffect(() => {
+        if (!db) return;
+        readGroups().then((groups) => setGroupsInContext(groups));
+
+        allGroupsAvailable();
+    }, [db, readGroups, setGroupsInContext, allGroupsAvailable]);
+
     return {
-        addGroup,
+        createGroups,
+        readGroups,
     };
 };
