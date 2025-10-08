@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import SideNavBar from '../components/SideNavBar';
 import Header from '../components/Header';
 import Pomodoro from '../components/Pomodoro';
-import { useNavBar } from '../context';
+import { useNavBar } from '../context/store';
 
 /* Types */
 type AppLayoutProps = {

@@ -6,7 +6,7 @@ import GroupIcon from '../assets/icons/group-icon.svg?react';
 import OverviewIcon from '../assets/icons/overview-icon.svg?react';
 import SettingsIcon from '../assets/icons/settings-icon.svg?react';
 import TaskIcon from '../assets/icons/task-icon.svg?react';
-import { useNavBar } from '../context';
+import { useNavBar } from '../context/store';
 
 type SideNavBarProps = {
     className?: string;

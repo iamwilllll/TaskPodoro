@@ -1,4 +1,4 @@
-import { useNavBar, useUser } from '../context';
+import { useNavBar, useUser } from '../context/store';
 
 import MenuIcon from '../assets/icons/menu-icon.svg?react';
 
