@@ -2,8 +2,8 @@ export type GroupsT = {
     id: string;
     name: string;
     description: string;
-    image: string;
-    tasks: Tasks[];
+    icon?: string;
+    tasks?: Tasks[];
 };
 
 export type GroupsTDraftT = Omit<GroupsT, 'id'>;
