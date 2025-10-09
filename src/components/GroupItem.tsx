@@ -1,3 +1,4 @@
+import { useGroup } from '../hooks/useGroup';
 import type { GroupsT } from '../types';
 
 import ElipsisMenu from './ElipsisMenu';
@@ -13,8 +14,10 @@ const pseudoCircleClasses: string[] = [
 ];
 
 function GroupItem({ className, group }: GroupItemProps) {
-    const { name, description, icon } = group;
+    const { name, description, icon, id } = group;
     let groupIcon = '/default-group-icon.png';
+
+    const { deleteGroup } = useGroup();
 
     if (icon) groupIcon = icon;
 
@@ -23,7 +26,7 @@ function GroupItem({ className, group }: GroupItemProps) {
             className={`bg-secondary-500 group relative mb-5 flex h-50 w-full max-w-[300px] cursor-pointer items-center justify-center overflow-hidden rounded-xl md:h-[250px] md:w-[190px] lg:mb-0 ${pseudoCircleClasses.join(' ')} ${className}`}
         >
             <div className="absolute top-0 hidden w-full items-center justify-end gap-5 px-2 pt-1 group-hover:flex">
-                <ElipsisMenu EditFn={() => console.log('id')} deleteFn={() => console.log('id')} />
+                <ElipsisMenu EditFn={() => console.log('id')} deleteFn={() => deleteGroup(id)} />
             </div>
 
             <div className="z-1 flex flex-col items-center justify-center gap-3 text-white">

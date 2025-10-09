@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 
 import { indexedDBManager } from '../indexedDB/initDB';
 
-import type { GroupsT, GroupsTDraftT } from '../types';
+import type { GroupsIDT, GroupsT, GroupsTDraftT } from '../types';
 
 import { useGroupContext } from '../context/store';
 
@@ -29,22 +29,30 @@ export const useGroup = () => {
             objectStore?.add(updatedGroup);
             addGroupToContext(updatedGroup);
             allGroupsAvailable();
-
         });
     };
 
     const readGroups = useCallback(() => {
         return new Promise<GroupsT[]>((resolve) => {
             if (!db) return;
-            
+
             const transaction = db?.transaction('groups', 'readonly');
             const objectStore = transaction?.objectStore('groups');
             const request = objectStore?.getAll();
-            
+
             request.onsuccess = () => resolve(request.result);
-            
         });
     }, [db]);
+
+    const deleteGroup = (id: GroupsIDT) => {
+        if (!db) return;
+
+        const transaction = db.transaction('groups', 'readwrite');
+        const objectStore = transaction.objectStore('groups');
+        objectStore.delete(id);
+
+        readGroups().then((groups) => setGroupsInContext(groups));
+    };
 
     const allGroupsAvailable = useCallback(() => {
         return new Promise<number>((resolve) => {
@@ -69,5 +77,6 @@ export const useGroup = () => {
     return {
         createGroups,
         readGroups,
+        deleteGroup,
     };
 };
