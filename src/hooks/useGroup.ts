@@ -10,7 +10,7 @@ import { useGroupContext } from '../context/store';
 export const useGroup = () => {
     const [db, setDB] = useState<IDBDatabase | null>(null);
     const { setMaxGroups, addGroupToContext, setGroupsInContext } = useGroupContext();
-    const MAX_GROUPS = 3;
+    const MAX_GROUPS = 4;
 
     useEffect(() => {
         indexedDBManager.createDB().then((res) => {
@@ -28,18 +28,21 @@ export const useGroup = () => {
             const updatedGroup: GroupsT = { ...group, id: `${uuid()}-${uuid()}` };
             objectStore?.add(updatedGroup);
             addGroupToContext(updatedGroup);
+            allGroupsAvailable();
+
         });
     };
 
     const readGroups = useCallback(() => {
         return new Promise<GroupsT[]>((resolve) => {
             if (!db) return;
-
+            
             const transaction = db?.transaction('groups', 'readonly');
             const objectStore = transaction?.objectStore('groups');
             const request = objectStore?.getAll();
-
+            
             request.onsuccess = () => resolve(request.result);
+            
         });
     }, [db]);
 
