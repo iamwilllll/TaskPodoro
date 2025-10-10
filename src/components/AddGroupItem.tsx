@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import AddIcon from '../assets/icons/plus-icon.svg?react';
-import AddGroupModal from '../components/AddGroupModal';
+import FormModal from './FormModal';
 
 type AddGroupItemProps = {
     className?: string;
@@ -19,7 +19,7 @@ function AddGroupItem({ className }: AddGroupItemProps) {
 
     return (
         <>
-            <AddGroupModal visibility={open} handleVisibility={handleVisibility} />
+            <FormModal visibility={open} handleVisibility={handleVisibility} />
             <div
                 className={`bg-secondary-600 relative flex w-full max-w-[300px] items-center justify-center overflow-hidden rounded-xl md:h-[250px] md:w-[190px] ${pseudoCircleClasses.join(' ')} ${className} `}
             >

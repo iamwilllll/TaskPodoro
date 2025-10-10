@@ -5,12 +5,12 @@ import { useGroup } from '../hooks/useGroup';
 import { useForm } from 'react-hook-form';
 import type { GroupsTDraftT } from '../types';
 
-type AddGroupModalProps = {
+type FormModalProps = {
     handleVisibility: () => void;
     visibility: boolean;
 };
 
-function AddGroupModal({ handleVisibility, visibility }: AddGroupModalProps) {
+function FormModal({ handleVisibility, visibility }: FormModalProps) {
     const { handleSubmit, register, reset } = useForm<GroupsTDraftT>();
 
     const { createGroups } = useGroup();
@@ -72,4 +72,4 @@ function AddGroupModal({ handleVisibility, visibility }: AddGroupModalProps) {
     );
 }
 
-export default AddGroupModal;
+export default FormModal;

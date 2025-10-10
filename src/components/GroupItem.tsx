@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { useGroup } from '../hooks/useGroup';
 import type { GroupsT } from '../types';
 
@@ -18,12 +19,19 @@ function GroupItem({ className, group, isGroupPage }: GroupItemProps) {
     const { name, description, icon, id } = group;
     let groupIcon = '/default-group-icon.png';
 
+    const navigate = useNavigate();
+
     const { deleteGroup } = useGroup();
 
     if (icon) groupIcon = icon;
 
+    const handleClick = () => {
+        navigate(`/groups/${name}`, { state: { group } });
+    };
+
     return (
         <div
+            onClick={handleClick}
             className={`bg-secondary-500 group relative mb-5 flex h-50 w-full max-w-[300px] cursor-pointer items-center justify-center overflow-hidden rounded-xl md:h-[250px] md:w-[190px] lg:mb-0 ${pseudoCircleClasses.join(' ')} ${className}`}
         >
             <div className="absolute top-0 hidden w-full items-center justify-end gap-5 px-2 pt-1 group-hover:flex">

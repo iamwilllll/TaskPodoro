@@ -16,7 +16,7 @@ function Groups() {
                 />
             ))}
 
-            <AddGroupItem className={`${MAX_GROUPS && 'hidden'} lg:h-full lg:max-h-none lg:w-full lg:max-w-none`} />
+            <AddGroupItem className={`${MAX_GROUPS && 'hidden'} mx-auto lg:h-full lg:max-h-none lg:w-full lg:max-w-none`} />
         </section>
     );
 }
