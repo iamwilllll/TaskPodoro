@@ -19,7 +19,7 @@ export const useGroupContext = create<useGroupContextProps>((set) => ({
     GROUPS: [],
     MAX_GROUPS: false,
 
-    setMaxGroups: (value) => {
+    setMaxGroupAmount: (value) => {
         set({
             MAX_GROUPS: value,
         });

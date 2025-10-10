@@ -13,7 +13,7 @@ export type useNavBarProps = {
 export type useGroupContextProps = {
     GROUPS: GroupsT[];
     MAX_GROUPS: boolean;
-    setMaxGroups: (value: boolean) => void;
+    setMaxGroupAmount: (value?: boolean) => void;
     setGroupsInContext: (groups: GroupsT[]) => void;
     addGroupToContext: (newGroup: GroupsT) => void;
 };

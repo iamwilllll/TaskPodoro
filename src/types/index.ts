@@ -6,7 +6,7 @@ export type GroupsT = {
     tasks?: Tasks[];
 };
 
-export type GroupsIDT = GroupsT['id']
+export type GroupsIDT = GroupsT['id'];
 export type GroupsTDraftT = Omit<GroupsT, 'id'>;
 
 export type Tasks = {

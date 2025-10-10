@@ -9,7 +9,7 @@ import { useGroupContext } from '../context/store';
 
 export const useGroup = () => {
     const [db, setDB] = useState<IDBDatabase | null>(null);
-    const { setMaxGroups, addGroupToContext, setGroupsInContext } = useGroupContext();
+    const { setMaxGroupAmount, addGroupToContext, setGroupsInContext } = useGroupContext();
     const MAX_GROUPS = 4;
 
     useEffect(() => {
@@ -52,6 +52,7 @@ export const useGroup = () => {
         objectStore.delete(id);
 
         readGroups().then((groups) => setGroupsInContext(groups));
+        setMaxGroupAmount();
     };
 
     const allGroupsAvailable = useCallback(() => {
@@ -60,12 +61,12 @@ export const useGroup = () => {
                 .then((groups) => groups.length)
                 .then((amount: number) => {
                     if (amount >= MAX_GROUPS) {
-                        setMaxGroups(true);
+                        setMaxGroupAmount(true);
                     }
                     resolve(amount);
                 });
         });
-    }, [readGroups, setMaxGroups]);
+    }, [readGroups, setMaxGroupAmount]);
 
     useEffect(() => {
         if (!db) return;
