@@ -1,4 +1,5 @@
 import AddGroupItem from '../components/AddGroupItem';
+import GroupItem from '../components/GroupItem';
 import { useGroupContext } from '../context/store';
 
 function Groups() {
@@ -6,16 +7,16 @@ function Groups() {
 
     return (
         <section className={`h-full w-full gap-5 lg:grid lg:grid-cols-2 lg:grid-rows-2`}>
-            {GROUPS.map((group, index) => {
-                const { name } = group;
+            {GROUPS.map((group, index) => (
+                <GroupItem
+                    key={index}
+                    group={group}
+                    isGroupPage={true}
+                    className="m-auto lg:h-full lg:max-h-none lg:w-full lg:max-w-none"
+                />
+            ))}
 
-                return (
-                    <div key={index} className="bg-red-900">
-                        <p>{name}</p>
-                    </div>
-                );
-            })}
-            <AddGroupItem className={`${MAX_GROUPS && 'hidden'}`} />
+            <AddGroupItem className={`${MAX_GROUPS && 'hidden'} lg:h-full lg:max-h-none lg:w-full lg:max-w-none`} />
         </section>
     );
 }
