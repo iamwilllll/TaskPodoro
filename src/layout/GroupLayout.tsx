@@ -6,13 +6,7 @@ function GroupLayout() {
     const { name } = useParams();
     const { group } = location.state as { group: GroupsT };
 
-
-
-    return (
-        <div>
-            {name}
-        </div>
-    );
+    return <div>{name}</div>;
 }
 
 export default GroupLayout;
